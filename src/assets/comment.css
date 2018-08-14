@@ -1,0 +1,87 @@
+body,html{
+  padding: 0;
+  margin: 0;
+}
+body{
+  font-size: 16px;
+  font-family: 微软雅黑;
+  color: #333333;
+  background: #222;
+}
+a{
+  text-decoration: none;
+  outline: none;
+}
+a:active{
+  outline: none;
+}
+p,ul,li,h2{
+  padding: 0;
+  margin: 0;
+}
+ul,li{
+  list-style: none;
+}
+.rel{
+  position: relative;
+}
+.margin-bottom-0{
+  margin-bottom:0!important;
+}
+.am-margin-bottom-0{
+  margin-bottom: 0!important;
+}
+.am-padding-top-0{
+  padding-top: 0;
+}
+.am-padding-left-0{
+  padding-left: 0;
+}
+.am-padding-left-lg{
+  padding-left: 20px;
+}
+.am-padding-left-llg{
+  padding-left: 35px;
+}
+.am-padding-right-0{
+  padding-right: 0!important;
+}
+.padding-left-10{
+  padding-left: 10px;
+}
+.col-mian{
+  color: #12C3F4;
+}
+.col-or{
+  color: #f58220;
+}
+h2.col-or{
+  font-size: 20px;
+  font-weight: normal;
+  margin-bottom: 10px;
+  font-family: "VarelaRound-Regular";
+}
+.col-fff{
+  color: #ffffff;
+}
+.bk-fc{
+  background: #FCFCFC;
+}
+.bk-fff{
+  background: #ffffff;
+}
+.w-100{
+  width: 100%;
+}
+.ft-bd{
+  font-weight: bold;
+}
+.ft-16{
+  font-size: 16px;
+}
+.ft-nomal{
+  font-weight: normal;
+}
+img{
+  width: 100%;
+}
