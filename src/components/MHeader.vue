@@ -5,7 +5,7 @@
         <img src="../assets/logo.png" alt="">
       </div>
       <div class="logo-title">
-        Chicken Music
+        Allen Music
       </div>
     </div>
     <mnav></mnav>
@@ -28,6 +28,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    height:44px ;
+    line-height:44px ;
   }
 
   .logo {

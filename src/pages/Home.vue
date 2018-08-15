@@ -2,19 +2,19 @@
   <div id="Home">
     <mheader></mheader>
     <mswiper></mswiper>
-    <h1 class="list-title">新歌推荐</h1>
+    <h1 class="list-title">歌曲推荐</h1>
     <div class="songlist-container">
-        <!--<ul class="songlist">-->
-          <!--<li v-for="(item,index) in song" v-if="index<5" :key="index">-->
-            <!--<div>-->
-              <!--<img :src="item.pic" alt="">-->
-            <!--</div>-->
-            <!--<div class="des">-->
-              <!--<h2>{{item.name}}</h2>-->
-              <!--<p>{{item.show_time}}</p>-->
-            <!--</div>-->
-          <!--</li>-->
-        <!--</ul>-->
+        <ul class="songlist">
+          <li v-for="(item,index) in song" v-if="index<20" :key="index">
+            <div>
+              <img v-lazy="item.imgurl" alt="">
+            </div>
+            <div class="des">
+              <h2>{{item.dissname}}</h2>
+              <p>作者：{{item.creator.name}}</p>
+            </div>
+          </li>
+        </ul>
     </div>
   </div>
 </template>
@@ -24,6 +24,7 @@
   import mswiper from '@/components/MSwiper'
   import jsonp from 'jsonp'
   import axios from 'axios'
+  import {getDiscList} from '../api/recomment'
   export default {
     name: "home",
     data(){
@@ -36,21 +37,8 @@
       mswiper:mswiper
     },
     created:function(){
-      var x = Math.random()
-      const url = '/api/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg?picmid=1&rnd=0.5671164862537503&g_tk=5381&jsonpCallback=getPlaylist&loginUin=0&hostUin=0&format=jsonp&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq&needNewCode=0&categoryId=10000000&sortId=5&sin=0&ein=29'
-      // jsonp(url,{
-      //     prefix: 'jp',
-      //     name:'getPlaylist'
-      // },function(res){
-      //   console.log(res)
-      // })
-      axios.get(url, {
-        // headers: {
-        //   'referer': 'https://c.y.qq.com/',
-        //   'host': 'c.y.qq.com'
-        // }
-      }).then((res)=>{
-        console.log(res)
+      getDiscList().then((res) => {
+       this.song = res.data.list
       })
     },
     mounted:function(){
@@ -66,6 +54,11 @@
     text-align: center;
     font-size: 14px;
     color: #ffcd32;
+  }
+  .songlist{
+    max-height: 50vh;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch
   }
   .songlist li{
     display: flex;

@@ -1,7 +1,7 @@
 <template>
     <div>
       <div class="nav">
-          <router-link to="/" tag="a">推荐</router-link>
+          <router-link to="/" tag="a" exact >推荐</router-link>
           <router-link to="/singer" tag="a">歌手</router-link>
           <router-link to="/rank" tag="a">排行</router-link>
           <router-link to="/search" tag="a">搜索</router-link>
@@ -20,6 +20,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      height: 46px;
     }
   .nav>a{
     display: block;
