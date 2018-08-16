@@ -3,12 +3,13 @@ import Router from 'vue-router'
 import Home from '@/pages/Home'
 import Singer from '@/pages/Singer'
 import Rank from '@/pages/Rank'
+import SingerDetail from '@/pages/SingerDetail'
 
 
 Vue.use(Router)
 
 export default new Router({
-  linkActiveClass:'is-active',
+  linkActiveClass: 'is-active',
   routes: [
     {
       path: '/',
@@ -18,7 +19,14 @@ export default new Router({
     {
       path: '/singer',
       name: 'Singer',
-      component: Singer
+      component: Singer,
+      children: [
+        {
+          path: ':id',
+          component: SingerDetail,
+
+        }
+      ]
     }
     ,
     {

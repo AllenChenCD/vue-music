@@ -2,10 +2,10 @@
   <div>
     <mheader></mheader>
     <div id="singer-container">
-      <div v-for="(item,index) in map" :key="index">
+      <div v-for="(item,index) in list" :key="index" class="group">
         <div class="singer-title">{{item.title}}</div>
-        <ul v-for="item_c in item.items">
-          <li class="name-container">
+        <ul>
+          <li class="name-container"  v-for="item_c in item.items" @click="selectItem(item_c)">
             <img v-lazy="item_c.singer_photo" alt="">
             <span>{{item_c.name}}</span>
           </li>
@@ -14,15 +14,17 @@
     </div>
     <div class="singer-fixed">
       <ul>
-        <li v-for="(item,index) in map" :key="index">{{item.title}}</li>
+        <li v-for="(item,index) in list" :data-index="index">{{item.title}}</li>
       </ul>
     </div>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
   import jsonp from 'jsonp'
   import mheader from '@/components/MHeader'
+  import SingerDetail from '@/pages/SingerDetail'
 
   export default {
     name: "singer",
@@ -39,7 +41,8 @@
             title: '热',
             items: []
           }
-        }
+        },
+        list: []
       }
     },
     created() {
@@ -50,7 +53,7 @@
         name: 'jp0'
       }, (err, data) => {
         this.singer = data.data.list
-        console.log(this.singer)
+        // console.log(this.singer)
         this.get_hot()
       })
     },
@@ -60,25 +63,64 @@
           if (i < 10) {
             this.map.hot.items.push({
               name: this.singer[i].Fsinger_name,
-              id:this.singer[i].Fsinger_mid,
-              singer_photo:`https://y.gtimg.cn/music/photo_new/T001R300x300M000${this.singer[i].Fsinger_mid}.jpg?max_age=2592000`
+              id: this.singer[i].Fsinger_mid,
+              singer_photo: `https://y.gtimg.cn/music/photo_new/T001R300x300M000${this.singer[i].Fsinger_mid}.jpg?max_age=2592000`
             })
           }
           const key = this.singer[i].Findex
-          if(!this.map[key]){
+          if (!this.map[key]) {
             this.map[key] = {
-              title:key,
-              items:[]
+              title: key,
+              items: []
             }
           }
           this.map[key].items.push({
             name: this.singer[i].Fsinger_name,
             id: this.singer[i].Fsinger_mid,
-            singer_photo:`https://y.gtimg.cn/music/photo_new/T001R300x300M000${this.singer[i].Fsinger_mid}.jpg?max_age=2592000`
+            singer_photo: `https://y.gtimg.cn/music/photo_new/T001R300x300M000${this.singer[i].Fsinger_mid}.jpg?max_age=2592000`
           })
         }
-        console.log(this.map)
+        let ret = []
+        let hot = []
+        for (let key in this.map) {
+          let val = this.map[key]
+          if (val.title.match(/[a-zA-Z]/)) {
+            ret.push(val)
+          } else if (val.title === '热') {
+            hot.push(val)
+          }
+        }
+        ret.sort((a, b) => {
+          return a.title.charCodeAt(0) - b.title.charCodeAt(0)
+        })
+        this.list = hot.concat(ret)
+      },
+      selectItem:function(singer){
+        console.log(singer.id)
+          this.$router.push({
+         path:`/singer/${singer.id}`
+       })
       }
+    },
+    mounted: function () {
+      //   var myVar = setInterval(function () {
+      //   var els = document.getElementsByClassName('group')
+      //   if (els.length) {
+      //     console.log(els)
+      //     console.log(els.length)
+      //     clearInterval(myVar)
+      //   }
+      // }, 20)
+
+      // for(var i=0;i<element.length;i++){
+      //   console.log(element[i])
+      //   console.log( element[i].getBoundingClientRect().top)
+      // }
+      // console.log(element)
+      // for(var i=0;i<)
+      // element.addEventListener("scroll",function(){
+      //   console.log(this.scrollTop)
+      // })
     }
   }
 
@@ -122,7 +164,7 @@
     position: absolute;
     z-index: 30;
     right: 0;
-    top: 50%;
+    top: 53%;
     transform: translateY(-50%);
     width: 20px;
     padding: 20px 0;
