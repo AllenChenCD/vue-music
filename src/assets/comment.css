@@ -1,87 +1,134 @@
-body,html,h1,h2,h3,h4,h5,h6,p{
+@font-face {
+  font-family: "music-icon";
+  src: url('./fonts/music-icon.ttf');
+  src: url('./fonts/music-icon.eot') format('embedded-opentype'),
+  url('./fonts/music-icon.woff') format('woff')
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'music-icon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+}
+
+.icon-back:before {
+  content: "\e911"
+}
+
+body, html, h1, h2, h3, h4, h5, h6, p {
   padding: 0;
   margin: 0;
 }
-body{
+
+body {
   font-size: 16px;
   font-family: 微软雅黑;
   color: #333333;
   background: #222;
 }
-a{
+
+a {
   text-decoration: none;
   outline: none;
 }
-a:active{
+
+a:active {
   outline: none;
 }
-p,ul,li,h2{
+
+p, ul, li, h2 {
   padding: 0;
   margin: 0;
 }
-ul,li{
+
+ul, li {
   list-style: none;
 }
-.rel{
+
+.rel {
   position: relative;
 }
-.margin-bottom-0{
-  margin-bottom:0!important;
+
+.margin-bottom-0 {
+  margin-bottom: 0 !important;
 }
-.am-margin-bottom-0{
-  margin-bottom: 0!important;
+
+.am-margin-bottom-0 {
+  margin-bottom: 0 !important;
 }
-.am-padding-top-0{
+
+.am-padding-top-0 {
   padding-top: 0;
 }
-.am-padding-left-0{
+
+.am-padding-left-0 {
   padding-left: 0;
 }
-.am-padding-left-lg{
+
+.am-padding-left-lg {
   padding-left: 20px;
 }
-.am-padding-left-llg{
+
+.am-padding-left-llg {
   padding-left: 35px;
 }
-.am-padding-right-0{
-  padding-right: 0!important;
+
+.am-padding-right-0 {
+  padding-right: 0 !important;
 }
-.padding-left-10{
+
+.padding-left-10 {
   padding-left: 10px;
 }
-.col-mian{
+
+.col-mian {
   color: #12C3F4;
 }
-.col-or{
+
+.col-or {
   color: #f58220;
 }
-h2.col-or{
+
+h2.col-or {
   font-size: 20px;
   font-weight: normal;
   margin-bottom: 10px;
   font-family: "VarelaRound-Regular";
 }
-.col-fff{
+
+.col-fff {
   color: #ffffff;
 }
-.bk-fc{
+
+.bk-fc {
   background: #FCFCFC;
 }
-.bk-fff{
+
+.bk-fff {
   background: #ffffff;
 }
-.w-100{
+
+.w-100 {
   width: 100%;
 }
-.ft-bd{
+
+.ft-bd {
   font-weight: bold;
 }
-.ft-16{
+
+.ft-16 {
   font-size: 16px;
 }
-.ft-nomal{
+
+.ft-nomal {
   font-weight: normal;
 }
-img{
+
+img {
   width: 100%;
 }
