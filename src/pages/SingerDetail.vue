@@ -16,13 +16,13 @@
       </div>
       <div class="song-list" ref="song_ul">
         <ul >
-          <li v-for="(item,index) in singer_detail.list" class="song-li" @click="toPlay">
+          <li v-for="(item,index) in singer_detail.list" class="song-li" @click="toPlay(index)">
             <h2>{{item.musicData.songname}}</h2>
             <p>专辑名：{{item.musicData.albumname}}</p>
           </li>
         </ul>
       </div>
-      <Player v-if="show"></Player>
+      <Player v-if="show" :msg="singer_detail,audio"></Player>
     </div>
   </transition>
 </template>
@@ -35,7 +35,8 @@
     data(){
         return {
           singer_detail:{},
-          show:false
+          show:false,
+          audio:''
         }
     },
     created() {
@@ -48,6 +49,7 @@
           name: 'jp1'
         }, (err, data) => {
           data.data.singer_img = `https://y.gtimg.cn/music/photo_new/T001R300x300M000${url}.jpg?max_age=2592000`
+          // data.data.audio_url = `http://dl.stream.qqmusic.qq.com/http://dl.stream.qqmusic.qq.com/C400${data.data.list.musicData.songmid}.m4a?guid=2061459708&vkey=8BF3A14053E174F20DECB932D24D095084804F79C93E36A15E96239E90CD5A1BE7E430E1F950EA935BF8DD167AA07295C429BFA340117316&uin=0&fromtag=38`
           this.singer_detail = data.data
             console.log(data.data)
 
@@ -68,8 +70,9 @@
       goback:function(){
         this.$router.go(-1)
       },
-      toPlay:function(){
+      toPlay:function(index){
         this.show = true
+        this.audio=index
       },
       hide(){
         this.show = !this.show
@@ -82,7 +85,7 @@
   }
 </script>
 
-<style scoped>
+<style>
   .rotate{
     transform: rotate(-90deg);
   }
@@ -118,7 +121,7 @@
   .icon-back:before {
     content: "\E911";
   }
-  .icon-back{
+  .icon-back,.icon-play,.icon-pause{
     display: block;
     padding: 10px;
     font-size: 22px;
@@ -158,6 +161,7 @@
     transition: all linear 0.2s;
     position: fixed;
     bottom: 0;
+    width: 100%
   }
   .slide-enter-active, .slide-leave-active {
     transition: all 0.3s
